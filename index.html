@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>No Deployment Yet</title>
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        font-family: Arial, sans-serif; /* Non-serif font */
-        background-color: #f4f4f4;
+    <script>
+      // prevents cesium bundle from causing uncaught errors when bundled.
+      // TODO Replace with a proper lazy loading of cesium
+      if (typeof TransformStream === "undefined") {
+        console.warn(
+          "Die TransformStream API wird von diesem Browser nicht unterstützt. Bitte benutzen sie einen unterstützten Browser."
+        );
+        class DummyTransformStream {
+          constructor() {
+            this.readable = null;
+            this.writable = null;
+            this.isDummy = true;
+          }
+        }
+        window.TransformStream = DummyTransformStream;
       }
-      .container {
-        text-align: center;
-      }
-      .message {
-        margin-top: 20px;
-        font-size: 24px;
-        color: #333;
-      }
-    </style>
+    </script>
+    <meta charset="utf-8" />
+    <title>DigiTal Zwilling / Geoportal</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1,viewport-fit=cover, user-scalable=no"
+    />
+
+    <link rel="icon" type="image/x-icon" href="https://digital-twin-wuppertal-live.github.io/geoportal/favicon.ico" />
+    <script type="module" crossorigin src="https://digital-twin-wuppertal-live.github.io/geoportal/assets/index-BwGK2nac.js"></script>
+    <link rel="stylesheet" crossorigin href="https://digital-twin-wuppertal-live.github.io/geoportal/assets/index-Ci7qDpz9.css">
   </head>
   <body>
-    <div class="container">
-      <!-- Update 'logo.png' to the path of your logo file or URL -->
-      <img
-        src="https://cismet.de/images/cismet_signet_rgb_buntesC.png"
-        alt="Company Logo"
-      />
-      <div class="message">No deployment yet</div>
-    </div>
+    <div id="root"></div>
   </body>
 </html>
